@@ -1,0 +1,23 @@
+{
+  "short_name": "B-Ecom",
+  "name": "Burkes-ecommerce",
+  "icons": [
+    {
+      "src": "/assets/img/star.svg",
+      "type": "image/svg+xml",
+      "sizes": "45x48",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/star.svg",
+      "type": "image/svg+xml",
+      "sizes": "45x48",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "index.php",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
