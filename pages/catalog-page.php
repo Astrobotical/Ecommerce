@@ -68,10 +68,10 @@
                                 <div class="row g-0">
                                     <div class="col-12 col-md-6 col-lg-4">
                                         <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
+                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="../assets/img/tech/image2.jpg"></a></div>
                                             <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
                                             <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                                <div class="rating"><img src="../assets/img/star.svg"><img src="../assets/img/star.svg"><img src="../assets/img/star.svg"><img src="../assets/img/star-half-empty.svg"><img src="../assets/img/star-empty.svg"></div>
                                                 <div class="price">
                                                     <h3>$100</h3>
                                                 </div>
@@ -80,94 +80,10 @@
                                     </div>
                                     <div class="col-12 col-md-6 col-lg-4">
                                         <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
+                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="../assets/img/tech/image2.jpg"></a><a href="#"></a></div>
                                             <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
                                             <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
-                                                <div class="price">
-                                                    <h3>$100</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
-                                            <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                            <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
-                                                <div class="price">
-                                                    <h3>$100</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
-                                            <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                            <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
-                                                <div class="price">
-                                                    <h3>$100</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
-                                            <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                            <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
-                                                <div class="price">
-                                                    <h3>$100</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
-                                            <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                            <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
-                                                <div class="price">
-                                                    <h3>$100</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
-                                            <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                            <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
-                                                <div class="price">
-                                                    <h3>$100</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a></div>
-                                            <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                            <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
-                                                <div class="price">
-                                                    <h3>$100</h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="assets/img/tech/image2.jpg"></a><a href="#"></a></div>
-                                            <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                            <div class="about">
-                                                <div class="rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
+                                                <div class="rating"><img src="../assets/img/star.svg"><img src="../assets/img/star.svg"><img src="../assets/img/star.svg"><img src="../assets/img/star-half-empty.svg"><img src="../assets/img/star-empty.svg"></div>
                                                 <div class="price">
                                                     <h3>$100</h3>
                                                 </div>
@@ -192,9 +108,8 @@
         </section>
     </main>
     <?php include '../components/footer.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
+    <?php include '../components/plugins.php'; ?>
+    <script  src="../assets/js/app.js"></script>
 </body>
 
 </html>
