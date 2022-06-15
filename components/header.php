@@ -14,9 +14,9 @@
     <link rel="icon" type="image/svg+xml" sizes="45x48" href="assets/img/star.svg">
     <link rel="icon" type="image/svg+xml" sizes="45x48" href="assets/img/star.svg">
     <link rel="icon" type="image/svg+xml" sizes="45x48" href="assets/img/star.svg">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.min.css">
