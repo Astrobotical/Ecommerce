@@ -2,7 +2,7 @@
 const Foodlist =[{ID:"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/items/iphone.jfif'},
 {ID: "Motorola" , Price: 300, Stars:4,HalfStar : 1, img : '../assets/img/items/moto.jfif'},
 {ID: "Samsung" , Price: 400,  Stars:3,HalfStar : 1,   img : '../assets/img/items/samsung.jpg'}];
-var container = document.getElementById("app");
+
 var shoppingcart = document.getElementById("main");
 var cartbutton = document.getElementById("cart");
 var storage = window.localStorage;
@@ -14,14 +14,17 @@ let app ={
     initialize: function(){
       $(document).ready(function () {
         app.applicationready();
+        console.log(localStorage.getItem('product'));
       });
     },
     applicationready: function(){
     app.createitems();
 },
     createitems: function(){
-        if (typeof (container) == 'undefined' || container === null) {
+        var container = document.getElementById("app");
+        if (!container) {
             app.productview();
+            console.log("start");
     }else{
         for(var i = 0; i < Foodlist.length; i++)
         {
@@ -167,19 +170,21 @@ deleteElements : function(){
         div2.forEach(obj => {obj.remove();});}
     },
     productpush : function(id){
-        storage.setItem("product", id);
+        localStorage.setItem('product', id);
         window.location.href = "product-page.php";
     },      
      productview : function(){
-        var Contained = document.getElementById("app");
-        var response = storage.getItem("product");
+        var Contained = document.getElementById("contain");
+        var response = localStorage.getItem('product');
+        console.log(response);
+        console.log(1);
         var div = document.createElement("div");
         if(response == undefined || response == null){}
         else{
             div.classList.add("product-info");
+            console.log(2);
         var product = Foodlist.find(x => x.ID === response);
-        var productviewed ="";
-        productviewed += `
+        var productviewed = `
         <div class="row">
             <div class="col-md-6">
                 <div class="gallery">
@@ -316,8 +321,10 @@ deleteElements : function(){
             </div>
         </div>`;
     }
+    console.log(3);
     div.innerHTML = productviewed;
-    Contained.appendChild(div);}
+    Contained.appendChild(div);
+    console.log("end");}
 };
 app.initialize();
 //document.getElementById("cart").addEventListener("click",app.showcart)
