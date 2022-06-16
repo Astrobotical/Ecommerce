@@ -1,5 +1,5 @@
 
-const Foodlist =[{ID:"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/items/iphone.jfif'},
+const Foodlist =[{ID:"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/tech/image1.jpg'},
 {ID: "Motorola" , Price: 300, Stars:4,HalfStar : 1, img : '../assets/img/items/moto.jfif'},
 {ID: "Samsung" , Price: 400,  Stars:3,HalfStar : 1,   img : '../assets/img/items/samsung.jpg'}];
 
@@ -77,13 +77,7 @@ let app ={
                var cart = document.getElementById("cart");
                 cartitems.push(newly);
                 storage.setItem("cart", JSON.stringify(cartitems));
-                app.deleteElements();
-               app.createitems();
-                if(cartitems.length  != 0){
-                    cart.innerHTML =` Cart (items ${cartitems.length})`;
-                } else{
-                    cart.innerHTML =` Cart (No items in the cart)`;
-                }
+                
            }
         }
     });
@@ -322,9 +316,21 @@ deleteElements : function(){
         </div>`;
     }
     console.log(3);
-    div.innerHTML = productviewed;
+    div.innerHTML = productviewed;0
     Contained.appendChild(div);
-    console.log("end");}
+    console.log("end");},
+    pushtocart: function(product){
+    $.ajax({
+        url: "../components/cartactions.php",
+        method: "POST",
+        data: {
+            product: product
+        },
+        success: function(data){
+            console.log(data);
+        }
+    });
+}
 };
 app.initialize();
 //document.getElementById("cart").addEventListener("click",app.showcart)
