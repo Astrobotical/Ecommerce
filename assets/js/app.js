@@ -1,11 +1,11 @@
 
-const Foodlist =[{ID:"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/tech/image1.jpg'},
-{ID: "Motorola" , Price: 300, Stars:4,HalfStar : 1, img : '../assets/img/items/moto.jfif'},
-{ID: "Samsung" , Price: 400,  Stars:3,HalfStar : 1,   img : '../assets/img/items/samsung.jpg'}];
+const Foodlist =[{ID:"Iphone01",Name :"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/tech/image1.jpg',Description : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera.",Display :"6.1",Camera : "12MP Ultra Wide", OS : "IOS", RAM : "6GB", Summary : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera."},
+{ID:"Motorola01", Name :"Motorola" , Price: 300, Stars:4,HalfStar : 1, img : '../assets/img/items/moto.jfif',Description : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States.",Display :"5.5",Camera : "12MP Ultra Wide", OS : "Android", RAM : "12GB", Summary : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States."}/*,
+{ID: "Samsung01",Name :"Samsung" , Price: 400,  Stars:3,HalfStar : 1,   img : '../assets/img/items/samsung.jpg',Description : "Samsung is a South Korean multinational conglomerate headquartered in Seoul. It is the largest South Korean company by market capitalization, and the largest in the world by revenue.",Display :"5.5",Camera : "12MP Ultra Wide", OS : "Android", RAM : "8GB",Summary : "Samsung is a South Korean multinational conglomerate headquartered in Seoul. It is the largest South Korean company by market capitalization, and the largest in the world by revenue."} */];
 
 var shoppingcart = document.getElementById("main");
 var cartbutton = document.getElementById("cart");
-var storage = window.localStorage;
+//var storage = localStorage;
 //storage.setItem("pages", JSON.stringify(pages));
 
 var buttonstate = false;
@@ -23,7 +23,7 @@ let app ={
     createitems: function(){
         var container = document.getElementById("app");
         if (!container) {
-            app.productview();
+          //  app.productview();
             console.log("start");
     }else{
         for(var i = 0; i < Foodlist.length; i++)
@@ -36,7 +36,7 @@ let app ={
             var item = `
             <div class="clean-product-item">
             <div class="image"><img src="${food.img}" class="card-img-top"></div>
-            <div class="product-name">${food.ID}</div>
+            <div class="product-name">${food.Name}</div>
             <div class="about"> 
                 <div class="rating"> `;
             if(food.Stars > 0)
@@ -56,7 +56,7 @@ let app ={
     }
 }
 },  addtocart : function(id){
-   // alert(id + " added to cart");
+    alert(id + " added to cart");
     Foodlist.forEach((key, value) =>{
         //console.log(key.ID);
         if(id ==  key.ID){
@@ -68,16 +68,19 @@ let app ={
                var newly = 
                   {
                           ID: key.ID,
+                          Name : key.Name,
                             Price: key.Price,
-                            Description: key.Description,
-                            img : key.img
+                            img : key.img,
+                            Display : key.Display,
+                            RAM : key.RAM,
+                            Quantity : 1,
                    }
                ;
                alertify.notify(`${id} added to cart`, 'success', 3, function(){  console.log(`${id} was added`); });
-               var cart = document.getElementById("cart");
                 cartitems.push(newly);
-                storage.setItem("cart", JSON.stringify(cartitems));
-                
+                localStorage.setItem('cart', JSON.stringify(cartitems));
+                //var exported = JSON.stringify(newly);
+                //app.pushtocart('ADD',exported);
            }
         }
     });
@@ -126,27 +129,28 @@ let app ={
         });
         app.showcart();
     },
-    Routes : function(location){
-        pages.forEach((key, value) =>{
-            if(location == key.Name){
-               return window.location.href = key.Location;
-            }
-        });
-    },
     loadcart: function(){
         const cart = JSON.parse(storage.getItem("cart"));
         for(var i = 0; i < cart.length; i++)
         {
-            var food = cart[i];
+            var item = cart[i];
             var div = document.createElement("div");
-            div.classList.add("card");
-            div.innerHTML = `<div class="card">
-            <img src="${food.img}" class="card-img-top style="height: 40%; width:50%">
-            <div class="card-body">
-            <h4>${food.ID}</h4>
-            <p class="card-text">$ ${food.Price}</p>
-            <p>${food.Description}</p>
-            <button onclick="app.removefromcart(\``+food.ID+ `\`)" class="btn btn-danger">Remove from cart</button></div></div>`;
+            div.classList.add("product");
+            div.innerHTML = `<div class="row justify-content-center align-items-center">
+            <div class="col-md-3">
+                <div class="product-image"><img class="img-fluid d-block mx-auto image" src="${item.img}"></div>
+            </div>
+            <div class="col-md-5 product-info"><a class="product-name" href="#">${item.Name}</a>
+                <div class="product-specs">
+                    <div><span>Display:&nbsp;</span><span class="value">${item.display}h</span></div>
+                    <div><span>RAM:&nbsp;</span><span class="value">${item.RAM}</span></div>
+                </div>
+            </div>
+            <div class="col-6 col-md-2 quantity"><label class="form-label d-none d-md-block" for="quantity">Quantity</label><input type="number" id="number" class="form-control quantity-input" value="1"></div>
+            <div class="col-6 col-md-2 price"><span>${item.Price}</span></div>
+        </div>
+    </div>
+            <button onclick="app.removefromcart(\``+item.ID+ `\`)" class="btn btn-danger">Remove from cart</button></div></div>`;
             shoppingcart.appendChild(div);
         }
     },
@@ -190,13 +194,24 @@ deleteElements : function(){
             </div>
             <div class="col-md-6">
                 <div class="info">
-                    <h3>${product.ID}</h3>
-                    <div class="rating"><img src="../assets/img/star.svg"><img src="../assets/img/star.svg"><img src="../assets/img/star.svg"><img src="../assets/img/star-half-empty.svg"><img src="../assets/img/star-empty.svg"></div>
+                    <h3>${product.Name}</h3>
+                    <div class="rating"> `;
+                    if(product.Stars > 0)
+                    {
+                        for(var j = 0; j < product.Stars; j++){
+                        productviewed += `<img src="../assets/img/star.svg">`;
+                    }}else{}
+                    if(product.HalfStar == 1)
+                    {
+                        productviewed += `<img src="../assets/img/star-half-empty.svg">`;
+                    }
+                    productviewed += `</div>
                     <div class="price">
-                        <h3>${product.Price}</h3>
-                    </div><button class="btn btn-primary" type="button"><i class="icon-basket"></i>Add to Cart</button>
+                        <h3>$${product.Price}</h3>
+                    </div>  <div class="col-6 col-md-2 quantity"><label class="form-label d-none d-md-block" for="quantity">Quantity</label><input type="number" id="number" class="form-control quantity-input mb-4" value="1"></div>
+                    <button class="btn btn-primary" type="button"><i class="icon-basket" onclick="app.addtocart(\``+product.ID+ `\`)"></i>Add to Cart</button>
                     <div class="summary">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Vestibulum diam risus, sagittis at fringilla at, pulvinar vel risus. Vestibulum dignissim eu nulla eu imperdiet. Morbi mollis tellus a nunc vestibulum consequat. Quisque tristique elit et nibh dapibus sodales. Nam sollicitudin a urna sed iaculis.</p>
+                        <p>${product.Summary}</p>
                     </div>
                 </div>
             </div>
@@ -211,7 +226,7 @@ deleteElements : function(){
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active description" role="tabpanel" id="description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>${product.Description}</p>
                     <div class="row">
                         <div class="col-md-5">
                             <figure class="figure"><img class="img-fluid figure-img" src="${product.img}"></figure>
@@ -237,19 +252,19 @@ deleteElements : function(){
                             <tbody>
                                 <tr>
                                     <td class="stat">Display</td>
-                                    <td>5.2"</td>
+                                    <td>${product.Display}</td>
                                 </tr>
                                 <tr>
                                     <td class="stat">Camera</td>
-                                    <td>12MP</td>
+                                    <td>${product.Camera}</td>
                                 </tr>
                                 <tr>
                                     <td class="stat">RAM</td>
-                                    <td>4GB</td>
+                                    <td>${product.RAM}</td>
                                 </tr>
                                 <tr>
                                     <td class="stat">OS</td>
-                                    <td>iOS</td>
+                                    <td>${product.OS}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -316,14 +331,15 @@ deleteElements : function(){
         </div>`;
     }
     console.log(3);
-    div.innerHTML = productviewed;0
+    div.insertAdjacentHTML('beforeend', productviewed);
     Contained.appendChild(div);
     console.log("end");},
-    pushtocart: function(product){
+    pushtocart: function(type,product){
     $.ajax({
         url: "../components/cartactions.php",
         method: "POST",
         data: {
+            Type : type,
             product: product
         },
         success: function(data){
