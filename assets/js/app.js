@@ -33,6 +33,7 @@ let app ={
             div.classList.add("col-12");
             div.classList.add("col-md-6");
             div.classList.add("col-lg-4");
+            div.classList.add("items");
             var item = `
             <div class="clean-product-item">
             <div class="image"><img src="${food.img}" class="card-img-top"></div>
@@ -56,13 +57,13 @@ let app ={
     }
 }
 },  addtocart : function(id){
-    alert(id + " added to cart");
+   // alert(id + " added to cart");
     Foodlist.forEach((key, value) =>{
         //console.log(key.ID);
         if(id ==  key.ID){
            if(cartitems.find(x => x.ID === id)){
                
-               return  alertify.error(id +' is already in cart'); 
+               return  alertify.error(key.Name +' is already in cart'); 
            }
            else{
                var newly = 
@@ -79,8 +80,8 @@ let app ={
                alertify.notify(`${id} added to cart`, 'success', 3, function(){  console.log(`${id} was added`); });
                 cartitems.push(newly);
                 localStorage.setItem('cart', JSON.stringify(cartitems));
-                //var exported = JSON.stringify(newly);
-                //app.pushtocart('ADD',exported);
+                var exported = JSON.stringify(newly);
+                app.pushtocart('ADD',exported);
            }
         }
     });
@@ -194,7 +195,7 @@ deleteElements : function(){
             </div>
             <div class="col-md-6">
                 <div class="info">
-                    <h3>${product.Name}</h3>
+                    <h3 class="mt-2">${product.Name}</h3>
                     <div class="rating"> `;
                     if(product.Stars > 0)
                     {
@@ -208,8 +209,8 @@ deleteElements : function(){
                     productviewed += `</div>
                     <div class="price">
                         <h3>$${product.Price}</h3>
-                    </div>  <div class="col-6 col-md-2 quantity"><label class="form-label d-none d-md-block" for="quantity">Quantity</label><input type="number" id="number" class="form-control quantity-input mb-4" value="1"></div>
-                    <button class="btn btn-primary" type="button"><i class="icon-basket" onclick="app.addtocart(\``+product.ID+ `\`)"></i>Add to Cart</button>
+                    </div>  <div class="col-6 col-md-2 quantity"><label class="form-label d-none d-md-block" for="quantity">Quantity</label><input type="number" id="number" class="form-control quantity-input mb-4" min="1" value="1"></div>
+                    <button class="btn btn-primary" type="button" onclick="app.addtocart(\``+product.ID+ `\`)"><i class="icon-basket" ></i>Add to Cart</button>
                     <div class="summary">
                         <p>${product.Summary}</p>
                     </div>
@@ -345,8 +346,26 @@ deleteElements : function(){
         success: function(data){
             console.log(data);
         }
-    });
+    ,
+});
 }
-};
+,
+ Category: function(checkbox){
+    var categories =document.getElementsByName('Categories');
+    categories.forEach((category)=>{
+        if (category !== checkbox){
+            category.checked = false;
+    }});
+},
+Brand : function(checkbox){
+    var brands =document.getElementsByName('Brands');
+    brands.forEach((brand)=>{
+        if (brand !== checkbox){
+            brand.checked = false;
+    }});
+}
+}
 app.initialize();
+
+
 //document.getElementById("cart").addEventListener("click",app.showcart)
