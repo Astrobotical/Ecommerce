@@ -10,8 +10,8 @@
         <section class="clean-block clean-catalog dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Catalog Page</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <h2 class="text-info">Products Page</h2>
+                    <p>Products below</p>
                 </div>
                 <div class="content">
                     <div class="row">
@@ -20,7 +20,7 @@
                                 <div class="filters">
                                     <div class="filter-item">
                                         <h3>Categories</h3>
-                                        <div class="form-check"><input class="form-check-input" type="checkbox"  name="Categories" onclick="app.Category(this)" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Phones</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox" value = "Phones" name="Categories" onclick="app.Category(this)" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Phones</label></div>
                                         <div class="form-check"><input class="form-check-input" type="checkbox"  name="Categories" onclick="app.Category(this)" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Laptops</label></div>
                                         <div class="form-check"><input class="form-check-input" type="checkbox"  name="Categories" onclick="app.Category(this)" id="formCheck-3"><label class="form-check-label" for="formCheck-3">PC</label></div>
                                         <div class="form-check"><input class="form-check-input" type="checkbox"  name="Categories" onclick="app.Category(this)" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Tablets</label></div>
@@ -43,7 +43,7 @@
                                     <div class="filters">
                                         <div class="filter-item">
                                             <h3>Categories</h3>
-                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="Categories" onclick="app.Category(this)" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Phones</label></div>
+                                            <div class="form-check"><input class="form-check-input" type="checkbox" name="Categories"value = "Phones"  onclick="app.Category(this)" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Phones</label></div>
                                             <div class="form-check"><input class="form-check-input" type="checkbox" name="Categories" onclick="app.Category(this)" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Laptops</label></div>
                                             <div class="form-check"><input class="form-check-input" type="checkbox" name="Categories" onclick="app.Category(this)" id="formCheck-3"><label class="form-check-label" for="formCheck-3">PC</label></div>
                                             <div class="form-check"><input class="form-check-input" type="checkbox" name="Categories" onclick="app.Category(this)" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Tablets</label></div>

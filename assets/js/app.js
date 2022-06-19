@@ -2,7 +2,7 @@
 const Foodlist =[{ID:"Iphone01",Name :"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/tech/image1.jpg',Description : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera.",Display :"6.1",Camera : "12MP Ultra Wide", OS : "IOS", RAM : "6GB", Summary : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera."},
 {ID:"Motorola01", Name :"Motorola" , Price: 300, Stars:4,HalfStar : 1, img : '../assets/img/items/moto.jfif',Description : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States.",Display :"5.5",Camera : "12MP Ultra Wide", OS : "Android", RAM : "12GB", Summary : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States."}/*,
 {ID: "Samsung01",Name :"Samsung" , Price: 400,  Stars:3,HalfStar : 1,   img : '../assets/img/items/samsung.jpg',Description : "Samsung is a South Korean multinational conglomerate headquartered in Seoul. It is the largest South Korean company by market capitalization, and the largest in the world by revenue.",Display :"5.5",Camera : "12MP Ultra Wide", OS : "Android", RAM : "8GB",Summary : "Samsung is a South Korean multinational conglomerate headquartered in Seoul. It is the largest South Korean company by market capitalization, and the largest in the world by revenue."} */];
-
+const Searchtypes = [['Category'],['Brands'],['OS']];
 var shoppingcart = document.getElementById("main");
 var cartbutton = document.getElementById("cart");
 //var storage = localStorage;
@@ -18,14 +18,48 @@ let app ={
       });
     },
     applicationready: function(){
+        var A = '';
     app.createitems();
 },
-    createitems: function(){
+    createitems: function(request){
         var container = document.getElementById("app");
         if (!container) {
           //  app.productview();
             console.log("start");
-    }else{
+    }else{}
+     if(request == null || request == undefined || request == ''){
+        {
+                console.log(request);
+            for(var i = 0; i < request.length; i++)
+          var food = request[i];
+            var div = document.createElement("div");
+            div.classList.add("col-12");
+            div.classList.add("col-md-6");
+            div.classList.add("col-lg-4");
+            div.classList.add("items");
+            var item = `
+            <div class="clean-product-item">
+            <div class="image"><img src="${food.img}" class="card-img-top"></div>
+            <div class="product-name">${food.Name}</div>
+            <div class="about"> 
+                <div class="rating"> `;
+            if(food.Stars > 0)
+            {
+                for(var j = 0; j < food.Stars; j++){
+                item += `<img src="../assets/img/star.svg">`;
+            }}else{}
+            if(food.HalfStar == 1)
+            {
+                item += `<img src="../assets/img/star-half-empty.svg">`;
+            }
+            item += `</div>`;
+            item += `<div class="price"><h3>${food.Price}</h3> </div></div><div class="product-name" >
+            <span><button class="btn btn-primary btn-sm" type="button" onclick="app.productpush(\``+food.ID+ `\`)">View item</button></span></div></div></div></div> `;
+            div.innerHTML = item;
+            container.appendChild(div);
+    }
+}
+    else{
         for(var i = 0; i < Foodlist.length; i++)
         {
             var food = Foodlist[i];
@@ -77,7 +111,7 @@ let app ={
                             Quantity : 1,
                    }
                ;
-               alertify.notify(`${id} added to cart`, 'success', 3, function(){  console.log(`${id} was added`); });
+               alertify.notify(`${key.Name} added to cart`, 'success', 3, function(){  console.log(`${id} was added`); });
                 cartitems.push(newly);
                 localStorage.setItem('cart', JSON.stringify(cartitems));
                 var exported = JSON.stringify(newly);
@@ -164,7 +198,7 @@ let app ={
     }
 },
 deleteElements : function(){
-    const div2 = document.querySelectorAll('.First');
+    const div2 = document.querySelectorAll('.items');
     if (typeof (div2) != 'undefined' && div2 != null) {
         div2.forEach(obj => {obj.remove();});}
     },
@@ -351,11 +385,21 @@ deleteElements : function(){
 }
 ,
  Category: function(checkbox){
-    var categories =document.getElementsByName('Categories');
+    var categories = document.getElementsByName('Categories');
     categories.forEach((category)=>{
-        if (category !== checkbox){
-            category.checked = false;
-    }});
+    if(category === checkbox){
+        var checkboxvalue = checkbox.value;
+        app.deleteElements();
+        console.log(category.value);
+       var Result = app.Getitems(Searchtypes[0],checkboxvalue);
+       var response = Result;
+       console.log(response);
+       app.createitems(response);
+    }
+    else if (category !== checkbox){
+        category.checked = false;
+     }
+});
 },
 Brand : function(checkbox){
     var brands =document.getElementsByName('Brands');
@@ -363,6 +407,20 @@ Brand : function(checkbox){
         if (brand !== checkbox){
             brand.checked = false;
     }});
+},
+Getitems : function (Type,Object){
+    $.ajax({
+        url : '../components/cartactions.php',
+        type: 'POST',
+       data: {
+            Type : Type,
+            Object: Object
+        },
+        success: function(data){
+           // console.log(data);
+        return this.data;
+        }
+    });
 }
 }
 app.initialize();
