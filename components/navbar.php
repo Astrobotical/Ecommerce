@@ -8,7 +8,11 @@
                     <li class="nav-item"><a class="nav-link" href="/Ecommerce/pages/pricing.php">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Ecommerce/pages/gallery.php">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="/Ecommerce/pages/payment-page.php">Payment</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Ecommerce/pages/shopping-cart.php">Cart<i class="fal fa-shopping-cart"></i><?php if (isset($_SESSION['cart'])){echo count($_SESSION['cart']); }else{}?></i></a></li>
+                    <?php
+                    if(!empty($_SESSION["Cart"])) {
+                  $cart = count(array_keys($_SESSION["Cart"]));
+                  ?>
+                    <li class="nav-item"><a class="nav-link" href="/Ecommerce/pages/shopping-cart.php">Cart<i class="fa-regular fa-cart-shopping"></i><span><?php echo $cart; }else{}?></span></a></li>
                 </ul>
             </div>
         </div>

@@ -1,13 +1,13 @@
 
-const Foodlist =[{ID:"Iphone01",Name :"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/tech/image1.jpg',Description : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera.",Display :"6.1",Camera : "12MP Ultra Wide", OS : "IOS", RAM : "6GB", Summary : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera."},
-{ID:"Motorola01", Name :"Motorola" , Price: 300, Stars:4,HalfStar : 1, img : '../assets/img/items/moto.jfif',Description : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States.",Display :"5.5",Camera : "12MP Ultra Wide", OS : "Android", RAM : "12GB", Summary : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States."}/*,
+const Foodlist =[{ID:"1",Name :"IPhone", Price: 250,  Stars:5,HalfStar : 0,img : '../assets/img/tech/image1.jpg',Description : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera.",Display :"6.1",Camera : "12MP Ultra Wide", OS : "IOS", RAM : "6GB", Summary : "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface. The iPhone runs the iOS operating system, and in 2021 when the iPhone 13 was introduced, it offered up to 1 TB of storage and a 12-megapixel camera."},
+{ID:"2 ", Name :"Motorola" , Price: 300, Stars:4,HalfStar : 1, img : '../assets/img/items/moto.jfif',Description : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States.",Display :"5.5",Camera : "12MP Ultra Wide", OS : "Android", RAM : "12GB", Summary : "Motorola is a multinational corporation that manufactures consumer electronics, computer hardware, and software. It is the largest manufacturer of consumer electronics in the world, and the second largest in the United States. It is also the largest manufacturer of consumer electronics in the United States."}/*,
 {ID: "Samsung01",Name :"Samsung" , Price: 400,  Stars:3,HalfStar : 1,   img : '../assets/img/items/samsung.jpg',Description : "Samsung is a South Korean multinational conglomerate headquartered in Seoul. It is the largest South Korean company by market capitalization, and the largest in the world by revenue.",Display :"5.5",Camera : "12MP Ultra Wide", OS : "Android", RAM : "8GB",Summary : "Samsung is a South Korean multinational conglomerate headquartered in Seoul. It is the largest South Korean company by market capitalization, and the largest in the world by revenue."} */];
 const Searchtypes = [['Category'],['Brands'],['OS']];
 var shoppingcart = document.getElementById("main");
 var cartbutton = document.getElementById("cart");
 //var storage = localStorage;
 //storage.setItem("pages", JSON.stringify(pages));
-
+var returnedData = [];
 var buttonstate = false;
 var cartitems =[];
 let app ={
@@ -19,19 +19,18 @@ let app ={
     },
     applicationready: function(){
         var A = '';
-    app.createitems();
+    app.createitems(undefined);
 },
-    createitems: function(request){
+    createitems: function(A){
         var container = document.getElementById("app");
         if (!container) {
           //  app.productview();
             console.log("start");
-    }else{}
-     if(request == null || request == undefined || request == ''){
+    } else if(returnedData == undefined){
         {
-                console.log(request);
-            for(var i = 0; i < request.length; i++)
-          var food = request[i];
+            console.log(returnedData);
+            for(var i = 0; i < returnedData.length; i++){
+          var food = returnedData[i];
             var div = document.createElement("div");
             div.classList.add("col-12");
             div.classList.add("col-md-6");
@@ -57,8 +56,8 @@ let app ={
             <span><button class="btn btn-primary btn-sm" type="button" onclick="app.productpush(\``+food.ID+ `\`)">View item</button></span></div></div></div></div> `;
             div.innerHTML = item;
             container.appendChild(div);
-    }
-}
+    } 
+}}
     else{
         for(var i = 0; i < Foodlist.length; i++)
         {
@@ -115,7 +114,7 @@ let app ={
                 cartitems.push(newly);
                 localStorage.setItem('cart', JSON.stringify(cartitems));
                 var exported = JSON.stringify(newly);
-                app.pushtocart('ADD',exported);
+                app.pushtocart('add',id);
            }
         }
     });
@@ -370,12 +369,14 @@ deleteElements : function(){
     Contained.appendChild(div);
     console.log("end");},
     pushtocart: function(type,product){
+        var Quantity = document.getElementById("number").value;
     $.ajax({
         url: "../components/cartactions.php",
-        method: "POST",
+        method: "GET",
         data: {
-            Type : type,
-            product: product
+            add : type,
+            UID: product,
+            Quantity: Quantity
         },
         success: function(data){
             console.log(data);
@@ -392,9 +393,18 @@ deleteElements : function(){
         app.deleteElements();
         console.log(category.value);
        var Result = app.Getitems(Searchtypes[0],checkboxvalue);
-       var response = Result;
-       console.log(response);
-       app.createitems(response);
+      // app.Getitems(Searchtypes[0],checkboxvalue);
+       // console.log(returnedData);
+       var count = 0;
+       var test = [];
+        test = getData(Searchtypes[0],checkboxvalue);
+       var test1 = test;
+
+
+        console.log(test1);
+      var response = Result;
+       //console.log(response);
+       app.createitems(Result);
     }
     else if (category !== checkbox){
         category.checked = false;
@@ -409,6 +419,7 @@ Brand : function(checkbox){
     }});
 },
 Getitems : function (Type,Object){
+    var result = "";
     $.ajax({
         url : '../components/cartactions.php',
         type: 'POST',
@@ -417,13 +428,34 @@ Getitems : function (Type,Object){
             Object: Object
         },
         success: function(data){
-           // console.log(data);
-        return this.data;
+           //console.log(data);
+           returnedData = JSON.parse(data);
+           // console.log(result);
         }
     });
+    console.log(returnedData);
 }
 }
 app.initialize();
-
+ function getData(A,B){
+    var count = 0;
+    var response = function(){
+        $.ajax({
+            url : '../components/cartactions.php',
+            type: 'POST',
+           data: {
+                Type : A,
+                Object: B
+            },
+            success: function(data){
+               // console.log(data);
+               
+              return JSON.parse(data);
+            }
+        });
+        
+    };
+    return response.responseText;
+}
 
 //document.getElementById("cart").addEventListener("click",app.showcart)
